@@ -9,7 +9,6 @@ import { useUser } from "@clerk/clerk-react";
 import { useMutation } from "convex/react";
 import { ChevronDown, ChevronRight, LucideIcon, MoreHorizontal, Plus, Trash } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { eventNames } from "process";
 import { toast } from "sonner";
 
 interface ItemProps {
