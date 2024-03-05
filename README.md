@@ -1,15 +1,14 @@
 # Fullstack Notion Clone: Next.js 13, React, Convex, Tailwind
 
-![Copy of Copy of Copy of Fullstack Twitter Clone (6)](https://github.com/AntonioErdeljac/notion-clone-tutorial/assets/23248726/66bcfca3-93bf-4aa4-950d-f98c020e1156)
+This is a repository for Fullstack Notion Clone: Next.js 13, React, Convex, Tailwind
 
-
-This is a repository for Fullstack Notion Clone: Next.js 13, React, Convex, Tailwind | Full Course 2023
+This app is developed based on Antonio's tutorial, and below is the link to the tutorial.
 
 [VIDEO TUTORIAL](https://www.youtube.com/watch?v=ZbX4Ok9YX94)
 
-This app has been deployed through Vercel, and the link to access it is as follows.
+This app has been deployed through Vercel, and the link to access it is as follow.
 
-URL to Yootion: note-taking-app-ochre-seven.vercel.app
+[URL to Yootion](note-taking-app-ochre-seven.vercel.app)
 
 Key Features:
 
