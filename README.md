@@ -8,7 +8,7 @@ This app is developed based on Antonio's tutorial, and below is the link to the 
 
 This app has been deployed through Vercel, and the link to access it is as follow.
 
-[URL to Yootion](note-taking-app-ochre-seven.vercel.app)
+[URL to Yootion](https://note-taking-app-ochre-seven.vercel.app)
 
 Key Features:
 
