@@ -9,7 +9,7 @@ This is a repository for Fullstack Notion Clone: Next.js 13, React, Convex, Tail
 
 This app has been deployed through Vercel, and the link to access it is as follows.
 
-URL to Yootion: note-taking-d7rzqohfs-david-yoos-projects.vercel.app
+URL to Yootion: note-taking-app-ochre-seven.vercel.app
 
 Key Features:
 
