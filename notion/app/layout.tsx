@@ -8,7 +8,8 @@ import { ModalProvider } from "@/components/providers/modal-provider";
 import { EdgeStoreProvider } from "@/lib/edgestore";
 
 const inter = Inter({ subsets: ["latin"] });
-
+// 프로젝트의 타이틀, 설명, 로고 설정
+// 라이트 모드 또는 다크 모드에 해당하는 아이콘을 동적으로 선택하여 로드
 export const metadata: Metadata = {
   title: "Yootion",
   description: "The connected workspace where better, faster work happens",

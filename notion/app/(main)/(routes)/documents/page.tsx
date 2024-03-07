@@ -10,10 +10,18 @@ import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 
 const DocumentsPage = () => {
+    // useRouter 훅을 사용하여 현재 페이지의 라우터 정보 가져오기
     const router = useRouter();
+
+    // useUser 훅을 사용하여 현재 사용자 정보 가져오기
     const { user } = useUser();
+
+    // documents.create 뮤테이션 훅 초기화
     const create = useMutation(api.documents.create);
+
+    // 노트 생성 버튼 클릭 이벤트 핸들러
     const onCreate = () => {
+        // documents.create 뮤테이션을 사용하여 새로운 노트 생성
         const promise = create({ title: "Untitled" })
             .then((documentId) => router.push(`/documents/${documentId}`))
         toast.promise(promise, {

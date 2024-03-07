@@ -36,21 +36,35 @@ export const Item = ({
     onClick,
     icon: Icon,
 }: ItemProps) => {
+    // Clerk를 사용해서 현재 사용자 정보를 가져옴
     const { user } = useUser();
+
+    // Convex를 사용해서 문서 아카이브를 위한 mutation 함수 설정해줌
     const archive = useMutation(api.documents.archive);
+
+    // Convex를 사용해서 새 문서 생성을 위한 mutation 함수 설정해줌
     const create = useMutation(api.documents.create);
+
+    // Next.js의 라우터 설정
     const router = useRouter();
+
+    // 확장 여부에 따라 Chevron 아이콘을 선택
     const ChevronIcon = expanded ? ChevronDown : ChevronRight;
+
+    // 문서 확장/축소 이벤트 처리 함수
     const handleExpand = (
         event: React.MouseEvent<HTMLDivElement, MouseEvent>
     ) => {
         event.stopPropagation();
         onExpand?.();
-    }
+    };
+
+    // 새 문서 생성 이벤트 처리 함수
     const onCreate = (
         event: React.MouseEvent<HTMLDivElement, MouseEvent>
     ) => {
         event.stopPropagation();
+        // 만약 문서의 ID가 없다면(즉, 부모 문서가 없다면) 함수 실행을 중단해줌
         if (!id) return;
         const promise = create({ title: "Untitled", parentDocument: id })
             .then((documentId) => {
@@ -65,6 +79,8 @@ export const Item = ({
             error: "Failed to create a new note."
         });
     };
+
+    // 문서 아카이브 이벤트 처리 함수
     const onArchive = (
         event: React.MouseEvent<HTMLDivElement, MouseEvent>
     ) => {
@@ -116,6 +132,7 @@ export const Item = ({
             )}
             {!!id && (
                 <div className="ml-auto flex items-center gap-x-2">
+                    {/* 문서 관련 드롭다운 메뉴 */}
                     <DropdownMenu>
                         <DropdownMenuTrigger
                             asChild
@@ -142,6 +159,7 @@ export const Item = ({
                             </div>
                         </DropdownMenuContent>
                     </DropdownMenu>
+                    {/* 새 문서 생성 버튼 */}
                     <div
                         role="button"
                         onClick={onCreate}

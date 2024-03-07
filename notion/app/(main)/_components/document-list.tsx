@@ -19,8 +19,11 @@ export const DocumentList = ({
     parentDocumentId,
     level = 0
 }: DocuemtListProps) => {
+    // URL 파라미터 및 라우터 설정
     const params = useParams();
     const router = useRouter();
+
+    // 문서 목록의 확장 상태를 관리하는 상태 변수
     const [expanded, setExpanded] = useState<Record<string, boolean>>({});
     const onExpand = (documentId: string) => {
         setExpanded(prevExpanded => ({
@@ -28,12 +31,16 @@ export const DocumentList = ({
             [documentId]: !prevExpanded[documentId]
         }));
     };
+
+    // Convex를 사용하여 문서 목록을 가져오는 Query
     const documents = useQuery(api.documents.getSidebar, {
         parentDocument: parentDocumentId
     });
     const onRedirect = (documentId: string) => {
         router.push(`/documents/${documentId}`);
     };
+
+    // 문서 목록이 로딩 중인 경우, 로딩 스켈레톤 UI를 표시해줌
     if (documents === undefined) {
         return (
             <>
@@ -61,6 +68,7 @@ export const DocumentList = ({
             </p>
             {documents.map((document) => (
                 <div key={document._id}>
+                    {/* 각 문서에 대한 UI 컴포넌트인 Item을 렌더링 */}
                     <Item 
                         id={document._id}
                         onClick={() => onRedirect(document._id)}

@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+/* h-full이 안 먹어서 이 class name 추가해주기  */
 html,
 body,
 :root {

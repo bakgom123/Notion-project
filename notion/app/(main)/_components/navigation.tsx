@@ -33,6 +33,7 @@ export const Navigation = () => {
     const [isCollapsed, setIsCollapsed] = useState(isMobile);
     const create = useMutation(api.documents.create);
 
+    // 화면 크기 변화에 따른 사이드바 처리
     useEffect(() => {
         if (isMobile) {
             collapse();
@@ -41,12 +42,14 @@ export const Navigation = () => {
         }
     }, [isMobile]);
 
+    // 모바일 화면에서 경로 변경 시 사이드바 닫기
     useEffect(() => {
         if (isMobile) {
             collapse();
         }
     }, [pathname, isMobile]);
 
+    // 마우스 이벤트 핸들러 정의
     const handleMouseDown = (
         event: React.MouseEvent<HTMLDivElement, MouseEvent>
     ) => {
@@ -57,6 +60,7 @@ export const Navigation = () => {
         document.addEventListener("mouseup", handleMouseUp)
     }
 
+    // 마우스 이동 이벤트 핸들러 정의
     const handleMouseMove = (event: MouseEvent) => {
         if (!isResizingRef.current) return;
         let newWidth = event.clientX;
@@ -69,12 +73,14 @@ export const Navigation = () => {
         }
     };
 
+    // 마우스 떼기 이벤트 핸들러 정의
     const handleMouseUp = () => {
         isResizingRef.current = false;
         document.removeEventListener("mousemove", handleMouseMove);
         document.removeEventListener("mouseup", handleMouseUp);
     };
 
+    // 사이드바 폭 초기화
     const resetWidth = () => {
         if (sidebarRef.current && navbarRef.current) {
             setIsCollapsed(false);
@@ -86,6 +92,7 @@ export const Navigation = () => {
         }
     }
 
+    // 사이드바 축소
     const collapse = () => {
         if (sidebarRef.current && navbarRef.current) {
             setIsCollapsed(true);
@@ -97,6 +104,7 @@ export const Navigation = () => {
         }
     }
 
+    // 문서 생성 이벤트 핸들러
     const handleCreate = () => {
         const promise = create({ title: "Untitled" })
             .then((documentId) => router.push(`/documents/${documentId}`))
@@ -116,6 +124,7 @@ export const Navigation = () => {
                     isResetting && "transition-all ease-in-out duration-300",
                     isMobile && "w-0")}
             >
+                {/* 사이드바 닫기 버튼 */}
                 <div
                     onClick={collapse}
                     role="button"
@@ -125,14 +134,21 @@ export const Navigation = () => {
                     <ChevronsLeft className="h-6 w-6" />
                 </div>
                 <div>
+                    {/* 사용자 정보 */}
                     <UserItem />
+                    {/* 검색 아이템 */}
                     <Item label="Search" icon={Search} isSearch onClick={search.onOpen} />
+                    {/* 설정 아이템 */}
                     <Item label="Settings" icon={Settings} onClick={settings.onOpen} />
+                    {/* 새로운 페이지 생성 아이템 */}
                     <Item onClick={handleCreate} label="New page" icon={PlusCircle} />
                 </div>
                 <div className="mt-4">
+                    {/* 문서 목록 */}
                     <DocumentList />
+                    {/* 새로운 페이지 생성 아이템 */}
                     <Item onClick={handleCreate} icon={Plus} label="Add a page" />
+                    {/* 휴지통 팝오버 */}
                     <Popover>
                         <PopoverTrigger className="w-full mt-4">
                             <Item label="Trash" icon={Trash} />
@@ -145,6 +161,7 @@ export const Navigation = () => {
                         </PopoverContent>
                     </Popover>
                 </div>
+                {/* 사이드바 리사이징 핸들러 */}
                 <div
                     onMouseDown={handleMouseDown}
                     onClick={resetWidth}

@@ -11,8 +11,10 @@ const MainLayout = ({
 }: {
     children: React.ReactNode;
 }) => {
+    // useConvexAuth 훅을 사용하여 Convex 인증 정보 가져오기
     const { isAuthenticated, isLoading } = useConvexAuth();
 
+    // 로딩 중일 때 스피너 표시
     if (isLoading) {
         return (
             <div className="h-full flex items-center justify-center">
@@ -21,6 +23,7 @@ const MainLayout = ({
         )
     }
 
+    // 인증되지 않은 경우 로그인 페이지로 리다이렉션
     if (!isAuthenticated) {
         return redirect("/");
     }
